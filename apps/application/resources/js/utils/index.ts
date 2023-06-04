@@ -1,0 +1,11 @@
+export const formSetState = Symbol('Init the form');
+export const formResetState = Symbol('Reset the form');
+export const formStateRead = Symbol('Read the full form state');
+export const formStateUpdate = Symbol('Update the state');
+export const onChangeDate = Symbol('Update the state with the date object');
+export const formStateUpdateCheckbox = Symbol('Update the state');
+export const formStateValidate = Symbol('Validate the form state');
+export const getValue = Symbol('Get input value');
+export const getError = Symbol('Get input error. Default to undefined if none');
+export const onChange = Symbol('Update the value of a field');
+export const trackHasFile = Symbol('Tracks if the form has a file');

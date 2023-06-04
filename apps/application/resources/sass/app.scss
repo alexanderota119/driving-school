@@ -1,0 +1,110 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import '_variables.scss';
+
+@import '@quasar/extras/animate/fadeIn.css';
+@import '@quasar/extras/animate/fadeOut.css';
+@import '@quasar/extras/fontawesome-v6/fontawesome-v6.css';
+@import '@quasar/extras/material-icons-outlined/material-icons-outlined.css';
+@import '@quasar/extras/material-icons/material-icons.css';
+
+// Import icon libraries
+@import '@quasar/extras/roboto-font-latin-ext/roboto-font-latin-ext.css';
+@import '@quasar/extras/themify/themify.css';
+
+@import './vue-date-picker/app';
+
+.animate {
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+body {
+    //background-color: $gray-100;
+
+    .container {
+        border-radius: 10px;
+    }
+}
+
+.page-actions {
+    flex-direction: row-reverse;
+
+    font-weight: bolder !important;
+}
+
+.table {
+    th.date,
+    td.date {
+        text-align: center;
+    }
+}
+
+div.required {
+    .form-label {
+        font-weight: 700;
+
+        &:after {
+            content: ' *';
+            //color: $danger;
+        }
+    }
+}
+
+.nav-item.active {
+    font-weight: 700;
+
+    .btn-content {
+        //color: $gray-100;
+    }
+}
+
+.active {
+    > a {
+        color: $success;
+        font-weight: 700;
+    }
+}
+
+.card.no-padding {
+    & > .card-body {
+        padding: 0 !important;
+    }
+}
+
+.gap-10 {
+    gap: 2.5rem;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.gap-3 {
+    gap: 0.75rem;
+}
+
+.gap-1 {
+    gap: 0.25rem;
+}
+
+.gap-px {
+    gap: 1px;
+}
+
+.gap-y-2 {
+    row-gap: 0.5rem;
+}

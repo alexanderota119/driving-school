@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "strict": true,
+        "importHelpers": true,
+        "pretty": true,
+        "outDir": "./dist/",
+        "jsx": "preserve",
+        "sourceMap": false,
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "lib": ["esnext", "dom", "scripthost"],
+        "types": ["node"],
+        "baseUrl": "./",
+        "rootDir": "resources/js/",
+        "forceConsistentCasingInFileNames": true,
+        "skipDefaultLibCheck": false,
+        "allowJs": false,
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "explainFiles": true,
+        "paths": {
+            "@/*": ["./resources/js/*"]
+        }
+    },
+    "include": ["resources/js/**/*"],
+    "exclude": ["node_modules"]
+}

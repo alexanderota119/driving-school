@@ -1,0 +1,184 @@
+models:
+
+
+  Car:
+    name: string:100 nullable default:'unknown'
+    make: string:100 guarded
+    model: string:100 guarded
+    color: string:100 guarded
+    year: int
+    tenant_id: string foreign
+    relationships:
+      hasMany: Instructor
+
+  Country:
+    name: string:50
+    abbr: string:10
+    relationships:
+      hasMany: State
+
+  State:
+    name: string:50
+    abbr: string:10
+    country_id: id foreign
+
+  Address:
+    street1: string:100
+    street2: string:100 nullable
+    street3: string:100 nullable
+    city: string:100 nullable
+    state_id: id foreign
+    tenant_id: string foreign
+    zipcode: string:25
+    relationships:
+      morphTo: addressable
+
+  Instructor:
+    first_name: string:100 guarded
+    last_name: string:100 guarded
+    middle_name: string:100 nullable guarded
+    email: string:100 nullable guarded
+    password: string:100 hidden
+    car_id: id foreign
+    tenant_id: string foreign
+    relationships:
+      morphOne: Address, NotificationPreference
+      morphMany: Phone
+
+  StudentType:
+    name: string:100
+    tenant_id: string foreign
+
+  Student:
+    first_name: string:100 guarded
+    last_name: string:100 guarded
+    middle_name: string:100 nullable guarded
+    email: string:100 nullable
+    password: string:100 hidden
+    tenant_id: string foreign
+    student_type_id: id foreign:StudentType
+    relationships:
+      morphOne: Address
+      morphMany: Phone
+
+  Course:
+    name: string:100
+    class_time: dateTime
+    tenant_id: string foreign
+    relationships:
+      morphOne: Address
+
+  TestLocation:
+    name: string:100
+    abbr: string:10
+    relationships:
+      morphOne: Address
+
+  Roster:
+    name: string:100
+    class_time: dateTime
+    is_test_passed: boolean nullable default:false
+    student_id: id foreign
+    course_id: id foreign
+    tenant_id: string foreign
+
+  AuditReason:
+    name: string:100
+
+  PaymentType:
+    name: string:100
+    tenant_id: string foreign
+
+  Payments:
+    amount: decimal:8,2
+    student_id: id foreign
+    course_id: id foreign nullable
+
+  School:
+    name: string:100
+    tenant_id: string foreign
+    relationships:
+      morphOne: Address
+      morphMany: Phone
+
+  AppointmentType:
+    name: string:100
+    duration: decimal:8,2
+    is_test: boolean
+    test_offset: int
+    order: int
+    tenant_id: string foreign
+
+  Appointment:
+    tenant_id: string foreign
+    student_id: id foreign
+    instructor_id: id foreign
+    creator_id: id foreign:Users
+    date: date
+    time_start: time
+    time_end: time
+    appointment_type_id: id foreign
+    test_location_id: id foreign:test_locations.id
+    test_passed: nullable datetime
+    cancelled_date: nullable datetime
+    cancelled_comment: string:200
+    car_id: id foreign
+    pickup_location_id: id foreign:test_locations.id
+    dl304a: string:10 nullable default:''
+    dl304c: string:10 nullable default:''
+
+  SpecialEvent:
+    name: string:100
+    date_start: date
+    end_date: date
+
+  TimeOff:
+    date_time_off: date
+    time_start: time
+    time_end: time
+    instructor_id: id foreign
+    recur_token: string:50 nullable
+    comments: string:200 nullable
+
+  NotificationPreference:
+    appointment_new_emails: nullable datetime
+    appointment_update_emails: nullable datetime
+    appointment_cancel_emails: nullable datetime
+    relationships:
+      morphTo: notification_preferenceable
+
+  Phone:
+    is_primary: boolean nullable default:false
+    can_receive_sms: nullable datetime
+    number: string:50
+    tenant_id: string foreign
+    relationships:
+      morphTo: phoneable
+
+  Dropdown:
+    name: string:100
+    slug: string:100
+    type_name: string:50
+    sort: integer nullable
+    tenant_id: string foreign
+
+
+seeders: User, Instructor, Student, TestLocation, School, Dropdown
+
+
+controllers:
+  Api/Student:
+    resource: api
+
+  Api/Country:
+    resource: api
+
+  Api/Course:
+    resource: api
+
+  Api/Car:
+    resource: api
+
+  Api/Dropdown:
+    resource: api
+# ...
